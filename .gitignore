@@ -18,7 +18,7 @@ coverage
 /cypress/screenshots/
 
 # Editor directories and files
-.vscode/*
+/frontend/vscode/*
 !.vscode/extensions.json
 .idea
 *.suo
@@ -28,3 +28,11 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+/backend/node_modules
+
+/frontend/node_modules
+
+/backend/vercel.json
+
+/frontend/.env
