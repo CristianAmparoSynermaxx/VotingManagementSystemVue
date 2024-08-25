@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .label {
+    @apply block mb-2 text-sm font-medium text-gray-900;
+  }
+
+  .textInput,
+  textarea {
+    @apply bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-1.5 md:p-2.5;
+  }
+
+  .profile:hover .profileName {
+    @apply block
+  }
+
+  .profileName {
+    @apply hidden bg-slate-300 px-2 py-1 text-xs rounded-md w-max
+  }
+
+  .textShadow {
+    text-shadow: 4px 2px 4px rgba(40, 40, 40, 0.6);
+  }
+
+  .titleShadow {
+    text-shadow: 4px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  .sidebarList {
+    @apply flex items-center p-2 text-white rounded-lg hover:bg-gray-700;
+  }
+
+  .icon {
+    @apply w-5 h-5;
+  }
+
+  .list {
+    @apply flex-1 ms-3 whitespace-nowrap;
+  }
+
+  .durationText {
+    @apply opacity-0
+  }
+
+  .duration:hover .durationText {
+    @apply block transition-opacity duration-300 opacity-100
+  }
+
+  .graph {
+
+    display: grid;
+    justify-items: center;
+    width: 100%;
+  }
+
+  body {
+    background-color: bisque;
+  }
+
+}
