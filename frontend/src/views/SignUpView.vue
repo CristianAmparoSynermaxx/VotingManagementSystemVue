@@ -1,26 +1,26 @@
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const router = useRouter();
 const apiHost = import.meta.env.VITE_host;
 
-const successMessage = ref('');
-const errorMessage = ref('');
-const imagePreview = ref('/profile.png');
+const successMessage = ref("");
+const errorMessage = ref("");
+const imagePreview = ref("/profile.png");
 const formData = ref({
-  image: '',
-  fname: '',
-  lname: '',
-  username: '',
-  password: '',
-  password2: '',
+  image: "",
+  fname: "",
+  lname: "",
+  username: "",
+  password: "",
+  password2: "",
 });
 
 const handleChange = (e) => {
-  if (e.target.name === 'image') {
+  if (e.target.name === "image") {
     const file = e.target.files[0];
     formData.value.image = file;
 
@@ -40,81 +40,87 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   const formDataToSend = new FormData();
-  formDataToSend.append('fname', formData.value.fname);
-  formDataToSend.append('lname', formData.value.lname);
-  formDataToSend.append('image', formData.value.image);
-  formDataToSend.append('username', formData.value.username);
-  formDataToSend.append('password', formData.value.password);
-  formDataToSend.append('password2', formData.value.password2);
+  formDataToSend.append("fname", formData.value.fname);
+  formDataToSend.append("lname", formData.value.lname);
+  formDataToSend.append("image", formData.value.image);
+  formDataToSend.append("username", formData.value.username);
+  formDataToSend.append("password", formData.value.password);
+  formDataToSend.append("password2", formData.value.password2);
 
   let loadingSwal;
 
   try {
     // Show loading spinner
     loadingSwal = Swal.fire({
-      title: 'Processing...',
-      text: 'Please wait',
+      title: "Processing...",
+      text: "Please wait",
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
-      }
+      },
     });
 
     // Perform form submission
     const response = await axios.post(`${apiHost}api/users/`, formDataToSend);
 
     successMessage.value = response.data.message;
-    errorMessage.value = '';
+    errorMessage.value = "";
 
     // Clear form data
     formData.value = {
-      image: '',
-      fname: '',
-      lname: '',
-      username: '',
-      password: '',
-      password2: '',
+      image: "",
+      fname: "",
+      lname: "",
+      username: "",
+      password: "",
+      password2: "",
     };
-    imagePreview.value = '/profile.png';
+    imagePreview.value = "/profile.png";
 
     // Close loading spinner and show success message
     loadingSwal.close();
     Swal.fire({
-      title: 'Success!',
+      title: "Success!",
       text: response.data.message,
-      icon: 'success'
+      icon: "success",
     });
 
     // Navigate to login page after a short delay
     setTimeout(() => {
-      router.push('/login');
+      router.push("/login");
     }, 1200);
   } catch (error) {
-
     Swal.fire({
-      title: 'Error!',
-      text: error.response.data.error || 'An error occurred',
-      icon: 'error'
+      title: "Error!",
+      text: error.response.data.error || "An error occurred",
+      icon: "error",
     });
 
-    errorMessage.value = error.response.data.error || 'An error occurred';
-    successMessage.value = '';
+    errorMessage.value = error.response.data.error || "An error occurred";
+    successMessage.value = "";
   }
 };
 </script>
 
-
 <template>
   <section class="bg-gray-100">
-    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
-      <div class="w-full bg-white rounded-lg shadow-xl md:mt-0 sm:max-w-md xl:p-0">
+    <div
+      class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0"
+    >
+      <div
+        class="w-full bg-white rounded-lg shadow-xl md:mt-0 sm:max-w-md xl:p-0"
+      >
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-          <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-4xl text-center">
+          <h1
+            class="text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-4xl text-center"
+          >
             Voting <span class="text-orange-600">System</span>
           </h1>
 
           <form class="space-y-2 md:space-y-4" @submit.prevent="handleSubmit">
-            <div class="relative mx-auto bg-orange-600 w-[137px] h-[137px] flex items-center rounded-full">
+            <div
+              class="relative mx-auto bg-orange-600 w-[137px] h-[137px] flex items-center rounded-full"
+            >
               <div
                 class="w-32 h-32 bg-orange-100 rounded-full overflow-hidden border-4 border-white flex justify-center items-center mx-auto"
               >
@@ -127,7 +133,11 @@ const handleSubmit = async (e) => {
                   for="imageInput"
                   class="absolute bottom-1 right-0 rounded-full w-10 h-10 bg-slate-600 hover:bg-slate-700 p-2 text-white cursor-pointer flex justify-center items-center"
                 >
-                  <img class="w-5 h-5 object-center" src="/editProfile.png" alt="" />
+                  <img
+                    class="w-5 h-5 object-center"
+                    src="/editProfile.png"
+                    alt=""
+                  />
                   <span class="sr-only">Choose an image to upload</span>
                 </label>
                 <input
@@ -198,8 +208,12 @@ const handleSubmit = async (e) => {
               />
             </div>
             <div class="text-center w-full">
-              <h1 v-if="successMessage" class="text-green-700">{{ successMessage }}</h1>
-              <h1 v-if="errorMessage" class="text-red-700">{{ errorMessage }}</h1>
+              <h1 v-if="successMessage" class="text-green-700">
+                {{ successMessage }}
+              </h1>
+              <h1 v-if="errorMessage" class="text-red-700">
+                {{ errorMessage }}
+              </h1>
             </div>
             <button
               type="submit"
@@ -207,8 +221,15 @@ const handleSubmit = async (e) => {
             >
               Register
             </button>
-            <p class="text-sm font-light text-gray-500 dark:text-gray-400 text-center">
-              Already have an account? <RouterLink to="/login" class="font-medium hover:underline text-blue-600">Login!</RouterLink>
+            <p
+              class="text-sm font-light text-gray-500 dark:text-gray-400 text-center"
+            >
+              Already have an account?
+              <RouterLink
+                to="/login"
+                class="font-medium hover:underline text-blue-600"
+                >Login!</RouterLink
+              >
             </p>
           </form>
         </div>
@@ -216,4 +237,3 @@ const handleSubmit = async (e) => {
     </div>
   </section>
 </template>
-

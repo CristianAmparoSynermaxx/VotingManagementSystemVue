@@ -1,17 +1,17 @@
 <script setup>
-import axios from 'axios';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import Swal from 'sweetalert2';
+import axios from "axios";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import Swal from "sweetalert2";
 
 const apiHost = import.meta.env.VITE_host;
 const router = useRouter();
-const errorMessage = ref('');
-const successMessage = ref('');
+const errorMessage = ref("");
+const successMessage = ref("");
 
 const form = ref({
-  username: '',
-  password: '',
+  username: "",
+  password: "",
 });
 
 const handleSubmit = async () => {
@@ -21,38 +21,44 @@ const handleSubmit = async () => {
     try {
       // Show loading spinner
       Swal.fire({
-        text: 'Please wait',
+        text: "Please wait",
         allowOutsideClick: false,
         didOpen: () => {
           Swal.showLoading();
-        }
+        },
       });
 
       // Perform login request
-      const response = await axios.post(`${apiHost}api/users/login`, form.value);
+      const response = await axios.post(
+        `${apiHost}api/users/login`,
+        form.value
+      );
       const { id, name, username, image } = response.data.user;
       const token = response.data.token;
 
       const userData = { id, name, username, image, token };
-      localStorage.setItem('userData', JSON.stringify(userData));
+      localStorage.setItem("userData", JSON.stringify(userData));
 
       successMessage.value = "Login Successfully";
-      errorMessage.value = '';
+      errorMessage.value = "";
 
       Swal.fire({
-        title: 'Success!',
-        text: 'Login Successfully',
-        icon: 'success',
-        showConfirmButton: false,      // Hide the OK button
-        timer: 1000,   
+        title: "Success!",
+        text: "Login Successfully",
+        icon: "success",
+        showConfirmButton: false, // Hide the OK button
+        timer: 1000,
       });
-
-      router.push('/content');
+      if (username === "admin@gmail.com") {
+        router.push("/admin/dashboard");
+      } else {
+        router.push("user/content");
+      }
     } catch (error) {
-     Swal.fire({
-        title: 'Error!',
+      Swal.fire({
+        title: "Error!",
         text: error.response.data.error || "An error occurred",
-        icon: 'error'
+        icon: "error",
       });
 
       errorMessage.value = error.response.data.error || "An error occurred";
@@ -62,13 +68,18 @@ const handleSubmit = async () => {
 };
 </script>
 
-
 <template>
   <section class="bg-gray-100">
-    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
-      <div class="w-full bg-white rounded-lg shadow-xl md:mt-0 sm:max-w-md xl:p-0">
+    <div
+      class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0"
+    >
+      <div
+        class="w-full bg-white rounded-lg shadow-xl md:mt-0 sm:max-w-md xl:p-0"
+      >
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-          <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-4xl text-center">
+          <h1
+            class="text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-4xl text-center"
+          >
             <span class="text-orange-600">Voting</span> System
           </h1>
           <form @submit.prevent="handleSubmit" class="space-y-2 md:space-y-4">
@@ -96,14 +107,25 @@ const handleSubmit = async () => {
             </div>
             <div class="text-center w-full">
               <h1 v-if="successMessage">{{ successMessage }}</h1>
-              <h1 v-if="errorMessage" class="text-red-600">{{ errorMessage }}</h1>
+              <h1 v-if="errorMessage" class="text-red-600">
+                {{ errorMessage }}
+              </h1>
             </div>
-            <button type="submit" class="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-1 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+            <button
+              type="submit"
+              class="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-1 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            >
               Login
             </button>
-            <p class="text-sm font-light text-gray-500 dark:text-gray-400 text-center">
+            <p
+              class="text-sm font-light text-gray-500 dark:text-gray-400 text-center"
+            >
               Don’t have an account yet?
-              <RouterLink to="/signup" class="font-medium hover:underline text-blue-600">Register!</RouterLink>
+              <RouterLink
+                to="/signup"
+                class="font-medium hover:underline text-blue-600"
+                >Register!</RouterLink
+              >
             </p>
           </form>
         </div>

@@ -1,10 +1,9 @@
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRouter } from "vue-router";
 
-const router = useRouter()
+const router = useRouter();
 
-const userData = JSON.parse(localStorage.getItem('userData'))
-
+const userData = JSON.parse(localStorage.getItem("userData"));
 </script>
 
 <template>
