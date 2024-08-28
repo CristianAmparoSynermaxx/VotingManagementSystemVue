@@ -4,8 +4,10 @@ import axios from "axios";
 import { GetHeaders } from "@/utils/GetHeaders";
 import { useRouter } from "vue-router";
 
+const props = defineProps({
+  admin: Boolean,
+});
 const remainingTime = ref(0);
-
 const headers = GetHeaders();
 const router = useRouter();
 
@@ -27,7 +29,9 @@ onMounted(() => {
 
     if (remainingTime.value < 0) {
       clearInterval(countdownRef); // Clear the interval
-      router.push("electionended"); // Redirect to election ended page
+      if (!props.admin) {
+        router.push("electionended"); // Redirect to election ended page
+      }
     }
   }, 1000);
 
@@ -56,6 +60,7 @@ const formatTime = (timeInSeconds) => {
 
 <template>
   <div
+    v-if="!admin"
     class="absolute duration top-24 right-5 py-3 px-4 flex items-center cursor-help justify-center h-max bg-orange-600 text-white shadow-lg rounded-xl w-max"
   >
     <img class="w-5 h-5" src="/duration.png" alt="Duration Icon" />
@@ -66,6 +71,18 @@ const formatTime = (timeInSeconds) => {
       class="absolute durationText hidden -bottom-10 z-20 text-black text-sm bg-gray-300 w-max px-2 py-1 rounded-lg"
     >
       Election Duration
+    </span>
+  </div>
+
+  <div v-else class="w-full flex items-center h-4/6 my-auto justify-center">
+    <img class="w-8" src="/duration.png" alt="" />
+    <span class="text-7xl pl-2 font-bold">
+      <template v-if="remainingTime < 0">
+        <div class="text-4xl">Election Ended</div>
+      </template>
+      <template v-else>
+        {{ formatTime(remainingTime) }}
+      </template>
     </span>
   </div>
 </template>

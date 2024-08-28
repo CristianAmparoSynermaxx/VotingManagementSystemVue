@@ -29,27 +29,27 @@ const routes = [
       {
         path: "content",
         name: "content",
-        component: () => import("@/views/ContentView.vue"),
+        component: () => import("@/views/user/ContentView.vue"),
       },
       {
         path: "ballot",
         name: "ballot",
-        component: () => import("@/views/BallotView.vue"),
+        component: () => import("@/views/user/BallotView.vue"),
       },
       {
         path: "donevoting",
         name: "done-voting",
-        component: () => import("@/views/DoneVotingView.vue"),
+        component: () => import("@/views/user/DoneVotingView.vue"),
       },
       {
         path: "edit-response",
         name: "edit-response",
-        component: () => import("@/views/EditResponseView.vue"),
+        component: () => import("@/views/user/EditResponseView.vue"),
       },
       {
         path: "electionended",
         name: "election-ended",
-        component: () => import("@/views/ElectionEndedView.vue"),
+        component: () => import("@/views/user/ElectionEndedView.vue"),
       },
     ],
   },
@@ -61,9 +61,13 @@ const routes = [
     meta: { requiresAuth: true, requiresAdmin: true, requiresNavbar: true }, // Requires both auth and admin role
     children: [
       {
+        path: "",
+        redirect: "admin/dashboard",
+      },
+      {
         path: "dashboard",
         name: "admin-dashboard",
-        component: () => import("@/views/AdminDashboardView.vue"),
+        component: () => import("@/views/admin/DashboardView.vue"),
       },
       // other admin routes...
     ],

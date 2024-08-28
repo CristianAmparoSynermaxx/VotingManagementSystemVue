@@ -35,7 +35,7 @@ onMounted(() => {
       }
     })
     .catch((error) => {
-      console.error("An error occurred while fetching votes:", error);
+      console.log(error.response.data.message);
     });
 });
 
