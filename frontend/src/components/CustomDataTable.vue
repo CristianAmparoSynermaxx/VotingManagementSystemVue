@@ -185,7 +185,7 @@ const deleteItem = async (id) => {
             <td v-for="column in columns" :key="column.key">
               <!-- Check if the column is 'action' to add action buttons -->
               <div v-if="column.key === 'action' && props.url === 'candidates'">
-                <div class="flex gap-1">
+                <div class="flex gap-1 items-center justify-center">
                   <button
                     class="flex items-center justify-center bg-indigo-500 text-white px-4 py-2 rounded focus:outline-none hover:bg-indigo-600 gap-1"
                     @click="editCandidate(item.id)"
@@ -202,7 +202,10 @@ const deleteItem = async (id) => {
                   </button>
                 </div>
               </div>
-              <div v-else-if="column.key === 'action' && props.url === 'users'">
+              <div
+                class="w-full flex items-center justify-center"
+                v-else-if="column.key === 'action' && props.url === 'users'"
+              >
                 <button
                   class="flex items-center justify-center bg-red-500 text-white px-4 py-2 rounded focus:outline-none hover:bg-red-600 gap-1"
                   @click="deleteItem(item.id)"
@@ -236,20 +239,20 @@ const deleteItem = async (id) => {
           </option>
         </select>
       </div>
-      <div class="flex gap-2">
+      <div class="flex gap-2 items-center justify-center">
         <button
           @click="changePage(currentPage - 1)"
           :disabled="currentPage <= 1"
         >
           <<
         </button>
+        <span>Page {{ currentPage }}</span>
         <button
           @click="changePage(currentPage + 1)"
           :disabled="data.length < pageSize"
         >
           >>
         </button>
-        <span>Page {{ currentPage }}</span>
       </div>
     </div>
   </div>
@@ -299,6 +302,13 @@ td {
 
 th:first-child,
 td:first-child {
+  text-align: center;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+th:last-child,
+tr:last-child {
   text-align: center;
   padding-left: 40px;
   padding-right: 40px;

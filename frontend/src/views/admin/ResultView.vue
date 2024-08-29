@@ -68,7 +68,7 @@ watch(
       <h2
         class="text-sm leading-tight tracking-tight text-gray-900 md:text-xl text-center pb-5"
       >
-        This shows the leading candidates for eachposition"
+        This shows the leading candidates for each position"
       </h2>
       <div class="flex flex-wrap justify-center gap-5">
         <div

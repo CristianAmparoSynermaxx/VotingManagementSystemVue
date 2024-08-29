@@ -60,7 +60,7 @@ onMounted(() => {
         >
           <div className="flex justify-between items-center w-full ">
             <span className="text-lg font-bold">Total Votes</span>
-            <router-link to="/admin/voteinfo"
+            <router-link to="votesinfo"
               ><img className="w-6 h-6" src="/details.png" alt=""
             /></router-link>
           </div>
@@ -76,7 +76,7 @@ onMounted(() => {
         >
           <div className="flex justify-between items-center w-full ">
             <span className="text-lg font-bold">Total Voters</span>
-            <router-link to="/admin/users"
+            <router-link to="users"
               ><img className="w-6 h-6" src="/details.png" alt=""
             /></router-link>
           </div>

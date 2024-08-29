@@ -52,7 +52,7 @@ const logout = () => {
     <div class="h-full px-3 py-4 bg-gray-800">
       <ul class="space-y-2 font-medium">
         <li>
-          <router-link class="sidebarList" to="admin">
+          <router-link class="sidebarList" to="dashboard">
             <img class="icon" src="/dashboard.png" alt="Dashboard" />
             <span class="ms-3">Dashboard</span>
           </router-link>
