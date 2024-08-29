@@ -2,7 +2,6 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import axios from "axios";
 import { GetHeaders } from "@/utils/GetHeaders"; // Ensure your utility function is imported correctly
-import { RouterLink } from "vue-router";
 
 const apiHost = import.meta.env.VITE_host;
 

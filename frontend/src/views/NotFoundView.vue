@@ -1,5 +1,9 @@
 <script setup>
-import { RouterLink } from "vue-router";
+import router from "@/router";
+
+const goBack = () => {
+  router.back();
+};
 </script>
 <template>
   <section
@@ -8,10 +12,11 @@ import { RouterLink } from "vue-router";
     <i class="fas fa-exclamation-triangle text-yellow-400 fa-4x mb-4"></i>
     <h1 class="text-6xl font-bold mb-4">404 Not Found</h1>
     <p class="text-xl mb-5">This page does not exist</p>
-    <RouterLink
-      to="content"
+    <button
+      @click="goBack"
       class="text-white bg-orange-700 hover:bg-green-900 rounded-md px-3 py-2 mt-4"
-      >Go Back</RouterLink
     >
+      Go Back
+    </button>
   </section>
 </template>

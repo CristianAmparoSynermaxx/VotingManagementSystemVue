@@ -61,7 +61,7 @@ const formatTime = (timeInSeconds) => {
 <template>
   <div
     v-if="!admin"
-    class="absolute duration top-24 right-5 py-3 px-4 flex items-center cursor-help justify-center h-max bg-orange-600 text-white shadow-lg rounded-xl w-max"
+    class="fixed duration top-24 right-5 lg:py-3 md:py-2 py-1 px-4 flex items-center cursor-help justify-center h-max bg-orange-600 text-white shadow-lg rounded-xl w-max"
   >
     <img class="w-5 h-5" src="/duration.png" alt="Duration Icon" />
     <span class="lg:text-xl text-lg pl-2 font-bold">

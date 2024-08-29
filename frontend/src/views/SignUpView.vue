@@ -226,7 +226,7 @@ const handleSubmit = async (e) => {
             >
               Already have an account?
               <RouterLink
-                to="/login"
+                to="/"
                 class="font-medium hover:underline text-blue-600"
                 >Login!</RouterLink
               >

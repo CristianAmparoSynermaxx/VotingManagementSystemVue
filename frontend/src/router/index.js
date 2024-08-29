@@ -42,7 +42,7 @@ const routes = [
         component: () => import("@/views/user/DoneVotingView.vue"),
       },
       {
-        path: "edit-response",
+        path: "editresponse",
         name: "edit-response",
         component: () => import("@/views/user/EditResponseView.vue"),
       },
@@ -66,10 +66,29 @@ const routes = [
       },
       {
         path: "dashboard",
-        name: "admin-dashboard",
+        name: "dashboard",
         component: () => import("@/views/admin/DashboardView.vue"),
       },
-      // other admin routes...
+      {
+        path: "votesinfo",
+        name: "votesinfo",
+        component: () => import("@/views/admin/VotesInfoView.vue"),
+      },
+      {
+        path: "result",
+        name: "result",
+        component: () => import("@/views/admin/ResultView.vue"),
+      },
+      {
+        path: "candidates",
+        name: "candidates",
+        component: () => import("@/views/admin/CandidatesView.vue"),
+      },
+      {
+        path: "users",
+        name: "users",
+        component: () => import("@/views/admin/UsersView.vue"),
+      },
     ],
   },
 

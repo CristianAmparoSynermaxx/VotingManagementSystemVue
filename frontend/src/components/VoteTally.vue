@@ -91,7 +91,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="graph overflow-auto overflow-x-hidden w-full gap-5 grid grid-cols-1 xl:grid-cols-2 py-10"
+    class="graph overflow-auto overflow-x-hidden w-full gap-5 grid grid-cols-1 lg:grid-cols-2 py-10"
   >
     <div
       v-for="chart in charts"
@@ -109,6 +109,7 @@ onMounted(() => {
         :options="chart.options"
         :series="chart.series"
         height="100%"
+        width="100%"
       />
     </div>
   </div>

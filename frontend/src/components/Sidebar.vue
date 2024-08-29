@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import Swal from "sweetalert2";
-import Account from "./Account.vue";
 
 const props = defineProps({
   isSidebarOpen: Boolean,
@@ -53,19 +52,19 @@ const logout = () => {
     <div class="h-full px-3 py-4 bg-gray-800">
       <ul class="space-y-2 font-medium">
         <li>
-          <router-link class="sidebarList" to="/admin">
+          <router-link class="sidebarList" to="admin">
             <img class="icon" src="/dashboard.png" alt="Dashboard" />
             <span class="ms-3">Dashboard</span>
           </router-link>
         </li>
         <li>
-          <router-link class="sidebarList" to="/admin/voteinfo">
+          <router-link class="sidebarList" to="votesinfo">
             <img class="icon" src="/votedetails.png" alt="Votes Information" />
             <span class="flex-1 ms-3 whitespace-nowrap">Votes Information</span>
           </router-link>
         </li>
         <li>
-          <router-link class="sidebarList" to="/admin/result">
+          <router-link class="sidebarList" to="result">
             <img class="icon" src="/results.png" alt="Result" />
             <span class="flex-1 ms-3 whitespace-nowrap">Result</span>
           </router-link>
@@ -90,7 +89,7 @@ const logout = () => {
           <ul :class="{ hidden: !dropDown }" class="py-2 space-y-2">
             <li>
               <router-link
-                to="/admin/candidates"
+                to="candidates"
                 class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group text-white hover:bg-gray-700"
               >
                 Candidates
@@ -98,7 +97,7 @@ const logout = () => {
             </li>
             <li>
               <router-link
-                to="/admin/users"
+                to="users"
                 class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group text-white hover:bg-gray-700"
               >
                 Users

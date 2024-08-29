@@ -99,7 +99,7 @@ const handleSubmit = async () => {
         title: "Success!",
         text: response.data.message,
       });
-      router.push("user/donevoting");
+      router.push("donevoting");
     } catch (error) {
       console.log(error.response.data.error);
       await Swal.fire({

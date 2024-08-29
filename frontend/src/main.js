@@ -10,7 +10,6 @@ const app = createApp(App);
 
 // Use VueApexCharts and register the component globally
 app.use(VueApexCharts);
-app.component("apexchart", VueApexCharts);
 
 app.use(router);
 
